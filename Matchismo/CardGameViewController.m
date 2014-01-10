@@ -81,7 +81,7 @@
         if (self.game.score > self.prevScore) {
             self.resultLabel.text = [NSString stringWithFormat:@"Matched %@ %@ for %ld points.", card1.contents, card2.contents, self.game.score - self.prevScore];
         } else {
-            self.resultLabel.text = [NSString stringWithFormat:@"%@ %@ don't match! %ld point penalty!", card1.contents, card2.contents, self.prevScore + self.game.score];
+            self.resultLabel.text = [NSString stringWithFormat:@"%@ %@ don't match! %ld point penalty!", card1.contents, card2.contents, self.prevScore - self.game.score];
         }
         [self.cards removeAllObjects];
     }
@@ -102,7 +102,7 @@
         if (self.game.score > self.prevScore) {
             self.resultLabel.text = [NSString stringWithFormat:@"Matched %@ %@ %@ for %ld points.", card1.contents, card2.contents, card3.contents, self.game.score - self.prevScore];
         } else {
-            self.resultLabel.text = [NSString stringWithFormat:@"%@ %@ %@ don't match! %ld point penalty!", card1.contents, card2.contents, card3.contents, self.prevScore + self.game.score];
+            self.resultLabel.text = [NSString stringWithFormat:@"%@ %@ %@ don't match! %ld point penalty!", card1.contents, card2.contents, card3.contents, self.prevScore - self.game.score];
         }
         [self.cards removeAllObjects];
     }
