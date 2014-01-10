@@ -15,11 +15,14 @@
 @property (nonatomic, strong) CardMatchingGame *game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *isThreeCard;
+@property (nonatomic) NSInteger prevScore;
 @end
 
 @implementation CardGameViewController
 
 - (IBAction)startNewGame:(UIButton *)sender {
+    self.isThreeCard.enabled = YES;
     _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
                                               usingDeck:[self createDeck]];
     [self updateUI];
@@ -36,8 +39,12 @@
 }
 
 - (IBAction)touchCardButton:(UIButton *)sender {
+    self.prevScore = self.game.score;
+    if (self.isThreeCard.enabled) {
+        self.isThreeCard.enabled = NO;
+    }
     NSUInteger cardIndex = [self.cardButtons indexOfObject:sender];
-    [self.game chooseCardAtIndex:cardIndex];
+    [self.game chooseCardAtIndex:cardIndex isThreeCard:[self.isThreeCard isOn]];
     [self updateUI];
 }
 

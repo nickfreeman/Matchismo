@@ -20,6 +20,18 @@
         } else if (self.rank == otherCard.rank) {
             score = 4;
         }
+    } else if ([otherCards count] == 2) {
+        PlayingCard *firstCard = otherCards[0];
+        PlayingCard *secondCard = otherCards[1];
+        if ([self.suit isEqualToString:firstCard.suit] && [self.suit isEqualToString:secondCard.suit]) {
+            score = 3;
+        } else if ([self.suit isEqualToString:firstCard.suit] || [self.suit isEqualToString:secondCard.suit]) {
+            score = 1;
+        } else if (self.rank == firstCard.rank && self.rank == secondCard.rank) {
+            score = 12;
+        } else if (self.rank == firstCard.rank || self.rank == secondCard.rank) {
+            score = 4;
+        }
     }
     return score;
 }
