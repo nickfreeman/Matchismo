@@ -7,7 +7,6 @@
 //
 
 #import "CardGameViewController.h"
-#import "PlayingCardDeck.h"
 #import "CardMatchingGame.h"
 
 @interface CardGameViewController ()
@@ -42,8 +41,8 @@
     return _game;
 }
 
-- (Deck *)createDeck {
-    return [[PlayingCardDeck alloc] init];
+- (Deck *)createDeck { //abstract
+    return nil;
 }
 
 - (IBAction)touchCardButton:(UIButton *)sender {
@@ -54,7 +53,6 @@
     NSUInteger cardIndex = [self.cardButtons indexOfObject:sender];
     Card *card = [self.game cardAtIndex:cardIndex];
     [self.cards addObject:card];
-    NSLog(@"Card array size: %lu", (unsigned long)[self.cards count]);
     [self.game chooseCardAtIndex:cardIndex isThreeCard:[self.isThreeCard isOn]];
     [self updateUI];
 }
